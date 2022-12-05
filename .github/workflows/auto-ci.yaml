@@ -4,13 +4,13 @@ on:
   push:
     branches: [ frontend ]
 
-env:
-  REPO: ${{ secrets.REPO }}
-  TAG: frontend
-
 jobs:
   build-image:
     runs-on: main-runner
+    environment: dev
+    env:
+      REPO: ${{ secrets.REPO }}
+      TAG: frontend
     steps:
       - name: build
         run: |

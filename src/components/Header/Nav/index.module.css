@@ -1,0 +1,26 @@
+.nav-bg {
+    background-color: #FFE9F1;
+}
+
+.branch-color {
+    color: #fc47fc !important;
+    margin: 0 2rem;
+    font-weight: 500;
+    font-size: 1.5rem !important;
+}
+
+.nav-container {
+    position: absolute;
+    right: 0;
+}
+
+.nav-box {
+    width: 100%;
+}
+
+.nav-box > a {
+    color: #fc47fc; 
+    margin: 1rem;
+    font-size: 1.1rem;
+}
+

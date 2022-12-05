@@ -1,0 +1,23 @@
+.container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.title_box {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.title_box > div {
+    text-indent: 1rem;
+}
+
+.icons {
+    align-self: center;
+    margin-right: 1rem;
+}
+
+.description {
+    text-align: left; 
+}

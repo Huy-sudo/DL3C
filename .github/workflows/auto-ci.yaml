@@ -17,5 +17,5 @@ jobs:
           rm -rf /workspace
           git clone git@github.com:nhd1207/DL3C.git /workspace
           cd /workspace && git checkout frontend
-          docker build . -t $REPO:TAG
+          docker build . -t $REPO:$TAG
           docker push $REPO:$TAG

@@ -1,0 +1,23 @@
+.container {
+    background-color: #FFE9F1;
+    display: grid;
+    grid-template-columns: 500px auto auto auto auto;
+    text-align: left;
+    height: 250px;
+    padding: 2rem ;
+}
+
+.detail {
+    margin: auto;
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.detail h5 {
+    font-size: 1.4rem;
+}
+
+.brands {
+    display: flex;
+    flex-direction: row;
+}

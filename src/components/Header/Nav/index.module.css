@@ -1,5 +1,6 @@
 .nav-bg {
     background-color: #FFE9F1;
+    position: relative;
 }
 
 .branch-color {
@@ -11,16 +12,23 @@
 
 .nav-container {
     position: absolute;
-    right: 0;
+    right: 2rem;
 }
 
 .nav-box {
     width: 100%;
 }
 
-.nav-box > a {
+.nav-box a {
     color: #fc47fc; 
-    margin: 1rem;
-    font-size: 1.1rem;
+    margin: 0 0.5rem;
+    padding: 1rem 1.6rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #ffffff;
 }
 

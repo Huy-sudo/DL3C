@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import styles from "./index.module.css";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
     return (
@@ -10,10 +11,10 @@ function NavBar() {
                 <div className={styles['nav-container']}>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className={styles['nav-box']} >
-                        <Nav.Link href="#home">TRANG CHỦ</Nav.Link>
-                        <Nav.Link href="#link">MÔ HÌNH 3D</Nav.Link>
-                        <Nav.Link href="#link">LIÊN HỆ</Nav.Link>
-                        <Nav.Link href="#link">VỀ CHÚNG TÔI</Nav.Link>
+                        <NavLink to="/home">TRANG CHỦ</NavLink>
+                        <NavLink to="#link">MÔ HÌNH 3D</NavLink>
+                        <NavLink to="/contact" activeClassName={styles.active}>LIÊN HỆ</NavLink>
+                        <NavLink to="/about">VỀ CHÚNG TÔI</NavLink>
                     </Nav>
                 </Navbar.Collapse>
                 </div>

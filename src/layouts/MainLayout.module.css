@@ -1,3 +1,12 @@
 .header {
   font-family: 'Montserrat', sans-serif;
 }
+
+.content {
+  padding-bottom: 250px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

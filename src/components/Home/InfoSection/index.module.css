@@ -2,21 +2,22 @@
     display: block;
     padding: 3rem 0;
     background-color: #FFE9F1;
+    margin: 2rem 0;
 }
 
 .container h2 {
     font-size: 2.5rem;
     text-transform:uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .item_box {
     margin: auto;
-    max-width: 80vw;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
     row-gap: 2rem;
+    column-gap: 5rem;
 }
 
 .item_box p {

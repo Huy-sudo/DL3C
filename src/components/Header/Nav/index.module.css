@@ -4,10 +4,10 @@
 }
 
 .branch-color {
-    color: #fc47fc !important;
+    color: #B1257A !important;
     margin: 0 2rem;
     font-weight: 500;
-    font-size: 1.5rem !important;
+    font-size: 2rem !important;
 }
 
 .nav-container {
@@ -20,10 +20,10 @@
 }
 
 .nav-box a {
-    color: #fc47fc; 
+    color: #B1257A; 
     margin: 0 0.5rem;
     padding: 1rem 1.6rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 500;
     text-decoration: none;
 }

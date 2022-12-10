@@ -1,6 +1,11 @@
 ﻿namespace DL3C_API.Data.Repository.BodyComp
 {
-    public class IBodyCompRepo
+    public interface IBodyCompRepo
     {
+        /// <summary>
+        /// Get all body comp.
+        /// </summary>
+        /// <returns>A list of body comp.</returns>
+        IQueryable<Source.BodyComp> GetBodyComps();
     }
 }

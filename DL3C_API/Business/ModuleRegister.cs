@@ -1,4 +1,11 @@
-﻿using System.Security;
+﻿using DL3C_API.Business.Body.Service;
+using DL3C_API.Business.BodyComp.Service;
+using DL3C_API.Business.Building.Service;
+using DL3C_API.Business.Face.Service;
+using DL3C_API.Business.Node.Service;
+using DL3C_API.Business.Prism.Service;
+
+using System.Security;
 
 namespace DL3C_API.Business
 {
@@ -15,9 +22,13 @@ namespace DL3C_API.Business
         public static void RegisterBusiness(this IServiceCollection services)
         {
             //--Register Service
-            //services.AddScoped<IUserSvc, UserSvc>();
-            //services.AddScoped<IPermissionSvc, PermissionSvc>();
-            //services.AddScoped<IRoleSvc, RoleSvc>();
+            services.AddScoped<IBodySvc, BodySvc>();
+            services.AddScoped<IBodyCompSvc, BodyCompSvc>();
+            services.AddScoped<IBuildingSvc, BuildingSvc>();
+            services.AddScoped<IFaceSvc, FaceSvc>();
+            services.AddScoped<INodeSvc, NodeSvc>();
+            services.AddScoped<IPrismSvc, PrismSvc>();
+
         }
     }
 }

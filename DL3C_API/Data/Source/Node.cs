@@ -13,5 +13,5 @@ public partial class Node
 
     public double ValueZ { get; set; }
 
-    public virtual ICollection<Face> IdFaces { get; } = new List<Face>();
+    public virtual ICollection<NodeFace> NodeFaces { get; } = new List<NodeFace>();
 }

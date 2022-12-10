@@ -1,5 +1,6 @@
 using DL3C_API.Business;
 using DL3C_API.Data;
+using DL3C_API.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Mapper
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.RegisterDataInfrastructure();
 builder.Services.RegisterData();
 builder.Services.RegisterBusiness();
 

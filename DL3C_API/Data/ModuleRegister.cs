@@ -1,4 +1,11 @@
-﻿namespace DL3C_API.Data
+﻿using DL3C_API.Data.Repository.Body;
+using DL3C_API.Data.Repository.BodyComp;
+using DL3C_API.Data.Repository.Building;
+using DL3C_API.Data.Repository.Face;
+using DL3C_API.Data.Repository.Node;
+using DL3C_API.Data.Repository.Prism;
+
+namespace DL3C_API.Data
 {
     /// <summary>
     /// Add custom services into Dependency Injection Container.
@@ -12,11 +19,12 @@
         public static void RegisterData(this IServiceCollection services)
         {
             //--Register Data Repository
-            //services.AddScoped<IUserRepo, UserRepo>();
-            //services.AddScoped<IPermissionRepo, PermissionRepo>();
-            //services.AddScoped<IRoleRepo, RoleRepo>();
-            //services.AddScoped<IUserRoleRepo, UserRoleRepo>();
-            //services.AddScoped<IRolePermissionRepo, RolePermissionRepo>();
+            services.AddScoped<IBodyRepo, BodyRepo>();
+            services.AddScoped<IBodyCompRepo, BodyCompRepo>();
+            services.AddScoped<IBuildingRepo, BuildingRepo>();
+            services.AddScoped<IFaceRepo, FaceRepo>();
+            services.AddScoped<INodeRepo, NodeRepo>();
+            services.AddScoped<IPrismRepo, PrismRepo>();
         }
     }
 }

@@ -25,6 +25,8 @@ public partial class NhahatlonContext : DbContext
 
     public virtual DbSet<Node> Nodes { get; set; }
 
+    public virtual DbSet<NodeFace> NodeFaces { get; set; }
+
     public virtual DbSet<Prism> Prisms { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,18 +44,10 @@ public partial class NhahatlonContext : DbContext
             entity.ToTable("Body");
 
             entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
-            entity.Property(e => e.BodyDescription)
-                .HasMaxLength(1)
-                .IsUnicode(false);
-            entity.Property(e => e.BodyName)
-                .HasMaxLength(1)
-                .IsUnicode(false);
-            entity.Property(e => e.Color)
-                .HasMaxLength(1)
-                .IsUnicode(false);
-            entity.Property(e => e.EdgeColor)
-                .HasMaxLength(1)
-                .IsUnicode(false);
+            entity.Property(e => e.BodyDescription).HasMaxLength(256);
+            entity.Property(e => e.BodyName).HasMaxLength(256);
+            entity.Property(e => e.Color).HasMaxLength(256);
+            entity.Property(e => e.EdgeColor).HasMaxLength(256);
 
             entity.HasOne(d => d.IdBuildingNavigation).WithMany(p => p.Bodies)
                 .HasForeignKey(d => d.IdBuilding)
@@ -103,15 +97,9 @@ public partial class NhahatlonContext : DbContext
             entity.ToTable("Building");
 
             entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
-            entity.Property(e => e.BuildingAddress)
-                .HasMaxLength(1)
-                .IsUnicode(false);
-            entity.Property(e => e.BuildingDescription)
-                .HasMaxLength(1)
-                .IsUnicode(false);
-            entity.Property(e => e.BuildingName)
-                .HasMaxLength(1)
-                .IsUnicode(false);
+            entity.Property(e => e.BuildingAddress).HasMaxLength(256);
+            entity.Property(e => e.BuildingDescription).HasMaxLength(256);
+            entity.Property(e => e.BuildingName).HasMaxLength(256);
         });
 
         modelBuilder.Entity<Face>(entity =>
@@ -123,9 +111,7 @@ public partial class NhahatlonContext : DbContext
             entity.ToTable("Face");
 
             entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
-            entity.Property(e => e.FaceName)
-                .HasMaxLength(1)
-                .IsUnicode(false);
+            entity.Property(e => e.FaceName).HasMaxLength(256);
         });
 
         modelBuilder.Entity<Node>(entity =>
@@ -140,25 +126,27 @@ public partial class NhahatlonContext : DbContext
             entity.Property(e => e.ValueX).HasColumnName("valueX");
             entity.Property(e => e.ValueY).HasColumnName("valueY");
             entity.Property(e => e.ValueZ).HasColumnName("valueZ");
+        });
 
-            entity.HasMany(d => d.IdFaces).WithMany(p => p.IdNodes)
-                .UsingEntity<Dictionary<string, object>>(
-                    "NodeFace",
-                    r => r.HasOne<Face>().WithMany()
-                        .HasForeignKey("IdFace")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_IdFace_Node_Face"),
-                    l => l.HasOne<Node>().WithMany()
-                        .HasForeignKey("IdNode")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_IdNode_Node_Face"),
-                    j =>
-                    {
-                        j.HasKey("IdNode", "IdFace")
-                            .HasName("PK_IdNode_IdFace")
-                            .IsClustered(false);
-                        j.ToTable("Node_Face");
-                    });
+        modelBuilder.Entity<NodeFace>(entity =>
+        {
+            entity.HasKey(e => new { e.IdNode, e.IdFace })
+                .HasName("PK_IdNode_IdFace")
+                .IsClustered(false);
+
+            entity.ToTable("Node_Face");
+
+            entity.Property(e => e.Seq).HasColumnName("SEQ");
+
+            entity.HasOne(d => d.IdFaceNavigation).WithMany(p => p.NodeFaces)
+                .HasForeignKey(d => d.IdFace)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_IdFace_Node_Face");
+
+            entity.HasOne(d => d.IdNodeNavigation).WithMany(p => p.NodeFaces)
+                .HasForeignKey(d => d.IdNode)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_IdNode_Node_Face");
         });
 
         modelBuilder.Entity<Prism>(entity =>

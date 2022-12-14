@@ -11,9 +11,11 @@ jobs:
     env:
       REPO: ${{ secrets.REPO }}
       TAG: frontend
+      SSH_KEY: ${{ secrets.SSH_KEY }}
     steps:
       - name: build
         run: |
+          echo $SSH_KEY | base64 -d > /root/.ssh
           rm -rf /workspace
           git clone git@github.com:nhd1207/DL3C.git /workspace
           cd /workspace && git checkout frontend

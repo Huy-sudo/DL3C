@@ -19,3 +19,20 @@ jobs:
           cd /workspace && git checkout frontend
           docker build . -t $REPO:$TAG
           docker push $REPO:$TAG
+  
+  deploy:
+    runs-on: main-runner
+    environment: dev
+    env:
+      RELEASE_NAME: dl3c-fe
+      KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      NAMESPACE: ie402
+      CONFIGMAP_DIR: ${{ secrets.CONFIGMAP_DIR }}
+      VALUES_DIR: ${{ secrets.VALUES_DIR }}
+      CHART_DIR: ${{ secrets.CHART_DIR }}
+    steps:
+      - name: Deploy to K8s
+        run: |
+          echo $KUBE_CONFIG | base64 -d > ~/.kube/config
+          kubectl apply -f $CONFIGMAP_DIR/$RELEASE_NAME.yaml -n $NAMESPACE
+          helm upgrade --install --recreate-pods $RELEASE_NAME $CHART_DIR -f $VALUES_DIR/$RELEASE_NAME.yaml -n $NAMESPACE      

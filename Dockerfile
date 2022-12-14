@@ -11,4 +11,4 @@ COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/build ./build
 RUN npm i -g serve
 EXPOSE 3000
-RUN ["serve", "-h", "build"]
+RUN ["serve", "-s", "build"]

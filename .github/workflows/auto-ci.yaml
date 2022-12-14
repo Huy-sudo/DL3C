@@ -23,7 +23,7 @@ jobs:
           docker build . -t $REPO:$TAG
           docker push $REPO:$TAG
   
-  deploy:
+  deploy-k8s:
     needs: build-image
     runs-on: main-runner
     environment: dev

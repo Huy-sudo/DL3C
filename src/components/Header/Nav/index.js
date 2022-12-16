@@ -12,7 +12,7 @@ function NavBar() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className={styles['nav-box']} >
                         <NavLink to="/home">TRANG CHỦ</NavLink>
-                        <NavLink to="#link">MÔ HÌNH 3D</NavLink>
+                        <NavLink to="/model">MÔ HÌNH 3D</NavLink>
                         <NavLink to="/contact" activeClassName={styles.active}>LIÊN HỆ</NavLink>
                         <NavLink to="/about">VỀ CHÚNG TÔI</NavLink>
                     </Nav>

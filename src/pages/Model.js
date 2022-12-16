@@ -1,10 +1,12 @@
 import React from 'react'
 import MainModel from '../components/MainModel'
+import MainLayout from '../layouts/MainLayout'
+
 function Model() {
   return (
-    <div>
+    <MainLayout>
         <MainModel />
-    </div>
+    </MainLayout>
   )
 }
 

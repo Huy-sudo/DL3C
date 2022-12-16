@@ -1,7 +1,17 @@
 .container {
-    max-width: 400px;
-    margin: auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 2rem;
+    max-width: 1250px;
+    margin: 2rem auto;
+}
+
+.title_box {
+    padding: 1rem;
+}
+
+.title_box p {
+    font-size: 1.2rem;
 }
 
 .slash {
@@ -10,10 +20,8 @@
     transform: rotate(90deg); 
 }
 
-.image {
-    display: block;
-    max-width: 488px;
-    max-height: 139px;
-    width: auto;
-    height: auto;
+.container div img {
+    width: 600px;
+    height: 250px;
+    object-fit: cover;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Map from "@arcgis/core/Map";
 import SceneView from "@arcgis/core/views/SceneView";
 
@@ -10,11 +10,12 @@ import Graphic from "@arcgis/core/Graphic";
 import esriRequest from "@arcgis/core/request";
 import { getAllBodyCom } from '../../apis/bodyCom';
 import { getAllPrisms } from '../../apis/prism';
-let geoJsonLayer = []
+// let geoJsonLayer = []
 function MainModel() {
   const modelRef = useRef();
   const [dataJson, setDataJson] = useState();
   const [dataGeoJson, setDataGeoJson] = useState();
+  let geoJsonLayer = useRef([]);
   // const [geoJsonLayer, setGeoJsonLayer] = useState([])
   async function getDataJson() {
     let response = await getAllBodyCom();
@@ -71,12 +72,12 @@ useEffect(() => {
    
    
     dataGeoJson?.allPrism.map(item => {
-      console.log(item);
+      // console.log(item);
       const itemGeoJsonBlob = new Blob([JSON.stringify(item)], {
         type: "application/json"
       });
       const url = URL.createObjectURL(itemGeoJsonBlob);
-      console.log(url);
+      // console.log(url);
       const itemLayer = new GeoJSONLayer({
         url
       });
@@ -98,14 +99,14 @@ useEffect(() => {
         },
       };
 
-      geoJsonLayer.push(itemLayer)
+      geoJsonLayer.current.push(itemLayer)
       });
 
 
     const map = await new Map({
       basemap: "topo-vector",
       ground: "world-elevation",
-       layers: [...geoJsonLayer] //end layers
+       layers: geoJsonLayer.current //end layers
     });
 
     const view = new SceneView({

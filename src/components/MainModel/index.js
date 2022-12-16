@@ -15,26 +15,27 @@ function MainModel() {
   const modelRef = useRef();
   const [dataJson, setDataJson] = useState();
   const [dataGeoJson, setDataGeoJson] = useState();
-
+  const [geoJsonLayer, setGeoJsonLayer] = useState([])
   async function getDataJson() {
     let response = await getAllBodyCom();
-    setDataJson(response.data.allBodyCom);
-    console.log(dataJson)
+    setDataJson(response?.data);
+    // console.log(response.data.allBodyCom)
   }
   async function getDataGeoJson() {
     let response = await getAllPrisms();
-    setDataGeoJson(response.data.allPrism);
-    console.log(dataGeoJson)
+    setDataGeoJson(response?.data);
+    // console.log(response.data.allPrism)
   }
 
   useEffect(() => {
-    getDataJson();
-    getDataGeoJson();
+    // getDataJson();
+    // getDataGeoJson();
 
 
     async function createMap(Map, SceneView, GeoJSONLayer, SceneLayer,
       GraphicsLayer, Graphic, esriRequest) {
-
+        
+        
       var createGraphic = function (data) {
         return new Graphic({
           geometry: data,
@@ -55,20 +56,55 @@ function MainModel() {
         type: "application/json"
       });
       const dataJsonUrl = URL.createObjectURL(dataJsonBlob);
+      console.log(dataJsonUrl)
 
       esriRequest(dataJsonUrl, json_options).then(function (response) {
         var graphicsLayer = new GraphicsLayer();
-        console.log(response);
-        response.data.forEach(function (data) {
+        // console.log(response);
+        response.data?.allBodyCom.forEach(function (data) {
           graphicsLayer.add(createGraphic(data));
         });
         map.add(graphicsLayer);
 
       });
+     
+      dataGeoJson?.allPrism.map(item => {
+        console.log(item);
+        const itemGeoJsonBlob = new Blob([JSON.stringify(item)], {
+          type: "application/json"
+        });
+        const url = URL.createObjectURL(itemGeoJsonBlob);
+        const itemLayer = new GeoJSONLayer({
+          url
+        });
+        console.log(itemLayer);
+      
+        itemLayer.renderer = {
+          type: "simple",
+          symbol: {
+            type: "polygon-3d",
+            symbolLayers: [
+              {
+                type: "extrude",
+                size: item?.features[0]?.properties?.height,
+                material: {
+                  color: item?.features[0]?.properties?.color,
+                },
+              },
+            ],
+          },
+        };
+  
+          setGeoJsonLayer(prev => {
+            return [...prev, itemLayer]
+          })
+        });
+
+
       const map = await new Map({
         basemap: "topo-vector",
         ground: "world-elevation",
-        // layers: [geojsonLayer] //end layers
+         layers: [...geoJsonLayer] //end layers
       });
 
       const view = new SceneView({
@@ -82,13 +118,19 @@ function MainModel() {
       });
       view.popup.defaultPopupTemplateEnabled = true;
     }
-    createMap(Map, SceneView, GeoJSONLayer, SceneLayer,
-      GraphicsLayer, Graphic, esriRequest);
+
+    async function createModel() {
+      await getDataJson();
+        await getDataGeoJson();
+        createMap(Map, SceneView, GeoJSONLayer, SceneLayer,
+          GraphicsLayer, Graphic, esriRequest);
+    }
+    createModel()
   }, [])
 
 
   return (
-    <div ref={modelRef}></div>
+    <div ref={modelRef} style={{height: "500px"}}></div>
   )
 }
 

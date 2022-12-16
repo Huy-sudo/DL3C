@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import InfoBlock from "./InfoBlock"
 import styles from "./index.module.css"
-
+import ImageBlock from './ImageBlock';
+import disan from "./ImageBlock/nha-hat-lon-thanh-pho-ho-chi-minh-khamphadisna-7.jpg"
 function AboutUs() {
     const [info, setInfo] = useState([
         {
@@ -36,11 +37,26 @@ function AboutUs() {
         }
     ]);
 
+    const imageList = [
+        {
+            id: "1",
+            url: "https://cdn.justfly.vn/1920x1920/media/202109/27/1632735914-tham-quan-nha-hat-lon-sai-gon-6.jpg"
+        },
+        {
+            id: "2",
+            url: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Bi%E1%BB%83u_di%E1%BB%85n_t%E1%BA%A1i_nh%C3%A0_h%C3%A1t_l%E1%BB%9Bn_tp_HCM.jpg"
+        },
+        {
+            id: "2",
+            url: `${disan}`
+        }
+    ]
+
     return (
         <section>
             <section className={styles.container}>
                 <h2 className={styles.header}>THAM QUAN NHÀ HÁT</h2>
-                <p style={{fontSize: "22px", maxWidth: "60%"}}>Nhà hát lớn thành phố Hồ Chí Minh hay còn được gọi ngắn gọn là Nhà hát Thành phố hoặc Nhà hát Lớn. Là nơi chuyên tổ chức và biểu diễn các tiết mục nghệ thuật, đồng thời có thể sử dụng để tổ chức một số sự kiện lớn thu hút rất nhiều người tới thăm quan. Du khách đã có cơ hội ghé thăm nơi này chưa? Nếu câu trả lời là chưa thì hãy cùng tìm hiểu và khám phá kiến trúc độc đáo của Nhà hát Lớn này nhé!</p>
+                <p style={{ fontSize: "22px", maxWidth: "60%", margin: "auto" }}>Nhà hát lớn thành phố Hồ Chí Minh hay còn được gọi ngắn gọn là Nhà hát Thành phố hoặc Nhà hát Lớn. Là nơi chuyên tổ chức và biểu diễn các tiết mục nghệ thuật, đồng thời có thể sử dụng để tổ chức một số sự kiện lớn thu hút rất nhiều người tới thăm quan. Du khách đã có cơ hội ghé thăm nơi này chưa? Nếu câu trả lời là chưa thì hãy cùng tìm hiểu và khám phá kiến trúc độc đáo của Nhà hát Lớn này nhé!</p>
                 {
                     info.map(item => {
                         return (
@@ -49,14 +65,20 @@ function AboutUs() {
                     })
                 }
                 <h2 className={styles.header}>MỘT SỐ HOẠT ĐỘNG</h2>
-                <p style={{fontSize: "22px", maxWidth: "60%"}}>5 shows diễn nhất định phải xem khi đến Nhà hát Thành phố</p>
-                <ul>
+                <p style={{ fontSize: "22px" }}>5 shows diễn nhất định phải xem khi đến Nhà hát Thành phố</p>
+                <ul className={styles.list}>
                     <li>À Ố Show</li>
                     <li>Opera Gala</li>
                     <li>The Mist</li>
                     <li>Nhạc kịch - Vũ kịch</li>
                     <li>Các chương trình âm nhạc Việt Nam</li>
                 </ul>
+                <div className={styles.image_list}>
+                    {imageList.map(item => {
+                        return (
+                            <ImageBlock url={item.url} />)
+                    })}
+                </div>
             </section>
         </section>
     )

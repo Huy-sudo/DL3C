@@ -29,6 +29,7 @@
 }
 
 .active {
-    background-color: #ffffff;
+    background-color: #fff3fa;
+    border-radius: 10%;
 }
 

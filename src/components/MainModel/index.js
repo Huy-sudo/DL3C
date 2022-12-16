@@ -131,7 +131,7 @@ useEffect(() => {
 
   return (
     <section className={styles.container}>
-    <div ref={modelRef} style={{height: "500px"}}></div>
+    <div ref={modelRef} style={{height: "800px"}}></div>
     </section>
   )
 }

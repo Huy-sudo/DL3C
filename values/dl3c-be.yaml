@@ -1,0 +1,183 @@
+replicaCount: 1
+
+####################################################
+### !! Rememeber to change this name !!
+####################################################
+
+nameOverride: "dl3c-fe"
+fullnameOverride: "dl3c-fe"
+
+image:
+  repository: docker.io/nhd1207/dl3c
+  pullPolicy: Always
+  tag: "backend"
+
+imagePullSecrets: []
+# - name: pull-secret
+
+# Select node cluster
+nodeSelector: {}
+
+configMap:
+  enabled: true
+
+secretMap:
+  enabled: false
+
+service:
+  type: ClusterIP # NodePort
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
+      name: http
+    # - port: 80
+    #   targetPort: 8080
+    #   nodePort: 80
+    #   protocol: TCP
+    #   name: http
+
+tolerations: []
+affinity: {}
+
+####################################################
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podSecurityContext: {}
+  # fsGroup: 2000
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+commands: []
+# commands:
+#   - "bash"
+#   - "-c"
+#   - "chmod +x ./wait && ./wait && /home/jboss-5.1.0.GA/bin/run.sh"
+
+args: []
+# args:
+#   - --stop
+#   - --runserver
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+#########################################################
+###  !! Setup pv pvc !!
+#########################################################
+
+# PVC
+# Setup container will claim the pvc
+volumes:
+  enabled: false
+  name: name-pvc
+  pvc:
+    accessModes:
+    - ReadWriteOnce
+    # - ReadOnlyMany
+    # - ReadWriteMany
+    # - ReadWriteOncePod
+    # volumeMode: Filesystem
+    resources:
+      requests:
+        storage: 1Gi #1Tb #100Mi #1000M
+    storageClassName: local
+  pvcClaimConfigs:
+    # - name: keycloak-volume-mounts
+    #   persistentVolumeClaim:
+    #     claimName: keycloak-pvc
+    # - name: common-values-1
+    #   persistentVolumeClaim:
+    #     claimName: services-envirmonet-2
+
+
+# Mount data from container to outside
+volumeMounts:
+  enabled: false
+  configs:
+    # - mountPath: /opt/jboss/keycloak/standalone/data/
+    #   name: keycloak-volume-mounts
+
+
+#######################################################
+## -- Zero downtime --
+## 1. Handling request when start new and terminal pod
+#######################################################
+
+# readinessProbe: {}
+readinessProbe:
+  enabled: false
+  configs:
+    # httpGet:
+    #   path: /auth/realms/master
+    #   port: 8080
+    # initialDelaySeconds: 120
+    # periodSeconds: 1
+    # timeoutSeconds: 5
+    # failureThreshold: 3
+    # successThreshold: 1
+
+# livenessProbe: {}
+livenessProbe:
+  enabled: false
+  configs:
+    # httpGet:
+    #   path: /auth/
+    #   port: 8080
+    # initialDelaySeconds: 120
+    # periodSeconds: 1
+    # timeoutSeconds: 5
+    # failureThreshold: 3
+    # successThreshold: 1
+
+preStop: {}
+  # exec:
+  #   command: ["/bin/bash", "-c", "sleep 15"]
+
+#########################################################
+###  !! Setup env !!
+#########################################################
+
+env:
+  name: dev
+  old:
+    enabled: false
+  new:
+    enabled: true
+
+settings: []
+### env old example
+# - name: SOME_THING
+#   value: sing and song
+
+### env new example

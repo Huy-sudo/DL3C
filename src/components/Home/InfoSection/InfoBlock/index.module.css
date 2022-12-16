@@ -14,6 +14,16 @@
     text-indent: 1rem;
 }
 
+.title_box div h4, .title_box h3 {
+    color: #B1257A;
+    font-size: 26px;
+    line-height: 2.5rem;
+}
+
+.description p {
+    font-size: 1.3rem;
+}
+
 .icons {
     margin-right: 1rem;
     position: absolute;

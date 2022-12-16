@@ -28,6 +28,10 @@ const PrismSchema = mongoose.Schema({
           required: [true, "property must have height"],
         },
         idb: { type: String, required: [true, "property must have idb"] },
+        color: {
+          type: mongoose.Mixed,
+          required: [true, "property must have color"],
+        },
       },
       geometry: {
         type: {

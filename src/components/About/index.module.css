@@ -1,0 +1,15 @@
+.container {
+    max-width: 80%;
+    margin: auto;
+}
+
+.header {
+    color: #B1257A;
+    font-size: 26px;
+    line-height: 2.5rem;
+}
+
+.li {
+    width: auto !important;
+}
+

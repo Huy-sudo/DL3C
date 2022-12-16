@@ -1,0 +1,19 @@
+.container {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+}
+
+.slash {
+    position: absolute;
+    border: 3px dashed #626262;
+    transform: rotate(90deg); 
+}
+
+.image {
+    display: block;
+    max-width: 488px;
+    max-height: 139px;
+    width: auto;
+    height: auto;
+}

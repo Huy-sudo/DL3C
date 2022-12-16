@@ -1,0 +1,30 @@
+.container {
+  margin-top: 1rem;
+  padding: 0rem 2rem 0rem 2rem;
+}
+
+.header {
+  color: #b1257a;
+  font-size: 40px;
+  line-height: 2.5rem;
+  margin: 2rem auto;
+  text-shadow: rgb(75, 75, 75) 1px 1px 2px;
+}
+
+.list {
+  margin: auto;
+  text-align: left;
+}
+
+.list li {
+  font-size: 22px;
+  width: fit-content;
+  margin: auto;
+}
+
+.image_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 3rem 0;
+}

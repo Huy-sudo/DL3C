@@ -1,0 +1,28 @@
+.container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 2rem;
+    max-width: 1250px;
+    margin: 2rem auto;
+}
+
+.title_box {
+    padding: 1rem;
+}
+
+.title_box p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px pink;
+}
+
+.slash {
+    position: absolute;
+    border: 3px dashed #626262;
+    transform: rotate(90deg); 
+}
+
+.container div img {
+    width: 600px;
+    height: 250px;
+    object-fit: cover;
+}

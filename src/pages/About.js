@@ -1,13 +1,13 @@
 import React from 'react'
-import MainModel from '../components/MainModel'
+import AboutUs from '../components/About'
 import MainLayout from '../layouts/MainLayout'
 
-function Model() {
+function About() {
   return (
     <MainLayout>
-        <MainModel />
+        <AboutUs></AboutUs>
     </MainLayout>
   )
 }
 
-export default Model
+export default About

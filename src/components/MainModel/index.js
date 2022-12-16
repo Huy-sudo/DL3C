@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import styles from "./index.module.css";
 import Map from "@arcgis/core/Map";
 import SceneView from "@arcgis/core/views/SceneView";
 
@@ -129,7 +130,9 @@ useEffect(() => {
   createModel()
 
   return (
-    <div ref={modelRef} style={{height: "500px"}}></div>
+    <section className={styles.container}>
+    <div ref={modelRef} style={{height: "800px"}}></div>
+    </section>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import Model from '../pages/Model';
@@ -14,6 +15,9 @@ function MainRoute() {
       </Route>
       <Route path="/model">
         <Model />
+      </Route>
+      <Route path="/about">
+        <About />
       </Route>
       <Route path="*">
         <Home />

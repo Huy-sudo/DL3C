@@ -10,12 +10,12 @@ import Graphic from "@arcgis/core/Graphic";
 import esriRequest from "@arcgis/core/request";
 import { getAllBodyCom } from '../../apis/bodyCom';
 import { getAllPrisms } from '../../apis/prism';
-
+let geoJsonLayer = []
 function MainModel() {
   const modelRef = useRef();
   const [dataJson, setDataJson] = useState();
   const [dataGeoJson, setDataGeoJson] = useState();
-  const [geoJsonLayer, setGeoJsonLayer] = useState([])
+  // const [geoJsonLayer, setGeoJsonLayer] = useState([])
   async function getDataJson() {
     let response = await getAllBodyCom();
     setDataJson(response?.data);
@@ -98,9 +98,7 @@ useEffect(() => {
         },
       };
 
-        setGeoJsonLayer(prev => {
-          return [...prev, itemLayer]
-        })
+      geoJsonLayer.push(itemLayer)
       });
 
 

@@ -9,7 +9,7 @@ spec:
   gateways:
   - default/main-gateway
   http:
-  - name: "kubesphere-console"
+  - name: "dl3c-fe"
     match:
     - uri:
         prefix: "/"

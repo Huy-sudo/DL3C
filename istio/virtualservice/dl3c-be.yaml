@@ -1,15 +1,15 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: dl3c-fe
+  name: dl3c-be
   namespace: default
 spec:
   hosts:
-  - dl3c.ndxcode.tk
+  - dl3c-be.ndxcode.tk
   gateways:
   - default/main-gateway
   http:
-  - name: "kubesphere-console"
+  - name: "dl3c-be"
     match:
     - uri:
         prefix: "/"

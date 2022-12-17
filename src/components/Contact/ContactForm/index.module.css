@@ -34,7 +34,8 @@
 .form button {
     display: block;
     margin: auto;
-    padding: 0.8rem 3rem;
+    padding: 0.8rem 2rem;
     font-size: 1.2rem;
     margin-top: 2rem;
+    margin-bottom: 3rem;
 }

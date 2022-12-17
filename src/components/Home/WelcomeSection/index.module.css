@@ -25,13 +25,13 @@
 }
 
 .info h1 {
-    font-size: 5rem;
+    font-size: 4.2rem;
     text-shadow: #FF009B 2px 2px 15px;
     margin: 2rem 0 0 3rem;
 }
 
 .info p {
-    font-size: 3rem;
+    font-size: 2.4rem;
     margin: 2rem 0 0 3rem;
     max-width: 50vw;
     z-index: -10;

@@ -34,7 +34,7 @@ function Footer() {
         <h5>Follow us</h5>
         <span className={styles.brands}>
             <span><FontAwesomeIcon icon={faFacebook} /></span>
-            <p>Abcd | HomePage</p>
+            <p> HCM Municipal Theater</p>
         </span>
         </div>
     </section>
